@@ -31,10 +31,11 @@ def getAudioInput():
     return audioInput    
 
 def playVideo(filename):
-    pygame.display.set_caption('My video!')
-    clip = VideoFileClip(filename)
-    clip.preview(fps=25)
-    pygame.quit()
+    #pygame.display.set_caption('My video!')
+    #clip = VideoFileClip(filename)
+    #clip.preview(fps=25)
+    #pygame.quit()
+    subprocess.call('open ' + filename, shell=True)
 
 def repeatUserInput(toRepeat): 
     print("You said " + toRepeat)
@@ -57,14 +58,15 @@ def determineVideoFilename(userInput):
     return videoFilename
 
 ####TESTING:
-vid1 = ("./play.mov")
-subprocess.call('open ' + vid1, shell=True)
+#vid1 = ("./video1.mp4")
+#subprocess.call('open ' + vid1, shell=True)
 #playVideo("./play.mov")
 ####End of TESTING
-###toDo = determineAction(getAudioInput()) 
+toDo = determineAction(getAudioInput()) 
 
-###if  toDo == "repeatUserInput":
-###    repeatUserInput(audioInput)
+if  toDo == "repeatUserInput":
+    repeatUserInput(audioInput)
 
-###elif toDo == "playVideo":
-###    print("I will play a video called " + determineVideoFilename(audioInput))
+elif toDo == "playVideo":
+    print("I will play a video called " + determineVideoFilename(audioInput))
+    playVideo(determineVideoFilename(audioInput))
